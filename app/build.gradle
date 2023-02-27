@@ -1,19 +1,18 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
 }
-
 android {
     namespace 'com.example.mysampleapp'
     compileSdk 33
 
     defaultConfig {
         applicationId "com.example.mysampleapp"
-        minSdk 24
-        targetSdk 33
+        minSdk 26
+        targetSdk 31
         versionCode 1
-        versionName "1.0"
-
+        versionName "beta.2023.01.04.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -32,18 +31,38 @@ android {
     }
 }
 
-dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+dependencies {
+    def camerax_version = "1.0.1"
+    def nav_version = "2.4.1" // used old version due to conflict issue with lifecycle. See here https://issuetracker.google.com/issues/217593040?pli=1
+    def rxAndroidVersion = '2.1.1'
+    def rxJavaVersion = '2.2.0'
+    def lifecycleVersion = '2.2.0-rc03'
+    def daggerVersion = '2.25.4'
+    def glide_version = '4.13.2'
+    def retrofitVersion = '2.6.1'
+    def okhttpVersion = '4.10.0'
+    def rxjava2AdapterVersion = '2.6.1'
 
     def appCenterSdkVersion = '4.4.5'
     implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+
+
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    testImplementation 'org.mockito:mockito-core:2.25.0'
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
+    
 }
